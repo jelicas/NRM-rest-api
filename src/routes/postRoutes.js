@@ -16,4 +16,8 @@ postRoutes.put("/posts/:id", postController.updatePost);
 
 postRoutes.patch("/posts/:id", postController.updatePost);
 
+postRoutes.get("/posts/:id/comments", postController.getPostComments);
+
+postRoutes.post("/posts/:id/comments", postController.addComment);
+
 export { postRoutes };

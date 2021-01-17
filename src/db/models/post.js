@@ -12,6 +12,13 @@ const PostSchema = new mongoose.Schema({
     required: true,
   },
 
+  user_id: {
+    type: String,
+    required: true,
+  },
+
+  comments: [{content: String, user_id: String}]
+
 });
 
 export const postModel = mongoose.model(
