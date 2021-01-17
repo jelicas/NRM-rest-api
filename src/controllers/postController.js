@@ -5,7 +5,17 @@ import { userModel } from "../db/models/user.js";
 export const postController = {
   async getPosts(req, res) {
     try {
-      const posts = await postModel.find();
+      let posts = [];
+      const { limit, offset } = req.query;
+
+      if (limit && offset) {
+        posts = await postModel
+          .find()
+          .skip(parseInt(offset))
+          .limit(parseInt(limit));
+      } else {
+        posts = await postModel.find();
+      }
 
       res.status(200).send(posts);
     } catch (error) {
